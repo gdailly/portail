@@ -1,42 +1,58 @@
 <div ng-cloak>
-    <div class="row">
-        <div class="col-md-4">
-            <span class="hipster img-responsive img-rounded"></span>
-        </div>
-        <div class="col-md-8">
-            <h1 translate="main.title">Welcome, Java Hipster!</h1>
-            <p class="lead" translate="main.subtitle">This is your homepage</p>
-
-            <div ng-switch="isAuthenticated()">
-                <div class="alert alert-success" ng-switch-when="true"
-                     translate="main.logged.message" translate-values="{username: '{{account.login}}'}">
-                    You are logged in as user "Admin".
+    <div class="row container-search">
+        <div class="col-md-8 col-md-offset-2">
+            <form class="" ng-submit="redirect()">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input class="form-control" type="text" ng-model="aliasStruct.alias" ng-change="close()"/>
+						<span class="input-group-btn">
+							<button class="btn btn-success" type="button" ng-click="redirect()">Go!</button>
+							<button class="btn btn-info" type="button" ng-click="search()"><span class="glyphicon glyphicon-search"></span>
+                            </button>
+						</span>
+                    </div>
                 </div>
-
-                <div class="alert alert-warning" ng-switch-when="false" translate="global.messages.info.authenticated">
-                    If you want to <a href="#/login">authenticate</a>, you can try the default login="admin" and
-                    password="admin".
+            </form>
+            <div class="panel panel-primary container-description" ng-show="showDescription">
+                <div class="panel-heading">
+                    <span translate="main.alias.detail">Detail of the alias</span>
+                    <div class="pull-right">
+                        <button class="btn btn-info btn-xs" type="button" ng-click="close()"><span class="glyphicon glyphicon-remove"></span>
+                    </div>
                 </div>
-
-                <div class="alert alert-warning" ng-switch-when="false" translate="global.messages.info.register">
-                    Don't have an account? <a href=\"#/register\">Register</a>
+                <div class="panel-body">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="url" translate="main.alias.url">Url</label>
+                            <input type="text" class="form-control" id="url" placeholder="{{'main.alias.url.placeholder' | translate}}" ng-model="aliasStruct.url">
+                        </div>
+                        <div class="form-group">
+                            <label for="owner" translate="main.alias.owner">Owner</label>
+                            <input type="text" class="form-control" id="owner" placeholder="{{'main.alias.owner.placeholder' | translate}}" ng-model="aliasStruct.owner" disabled>
+                        </div>
+                        <button class="btn btn-primary" type="button" ng-click="save()" ng-show="actionAuthorised()" translate="global.action.save">Save</button>
+                        <button class="btn btn-danger" type="button" ng-click="delete()" ng-show="actionAuthorised()" translate="global.action.delete">Delete</button>
+                    </form>
                 </div>
             </div>
-
-            <p translate="main.question">
-                If you have any question on JHipster:
-            </p>
-
-            <ul>
-                <li><a href="http://jhipster.github.io/" target="_blank" translate="main.link.homepage">JHipster homepage</a></li>
-                <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank" translate="main.link.stackoverflow">JHipster on Stack Overflow</a></li>
-                <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" translate="main.link.bugtracker">JHipster bug tracker</a></li>
-                <li><a href="https://twitter.com/java_hipster" target="_blank"  translate="main.link.contact">contact @java_hipster on Twitter</a></li>
-            </ul>
-
-            <p>
-             <span translate="main.like">If you like JHipster, don't forget to give us a star on </span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank" translate="main.github">Github</a>!
-            </p>
         </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <a class="col-md-3 thumbnail vignette" ng-repeat="parametrageDefaut in listeParametrageDefaut" href="{{parametrageDefaut.url}}">
+                <span class="glyphicon {{parametrageDefaut.glyphicon}} btn-lg"></span>
+                <div class="caption">
+                    {{parametrageDefaut.titre}}
+                </div>
+            </a>
+            <a class="col-md-3 thumbnail vignette" ng-repeat="parametrage in listeParametrage" href="{{parametrage.url}}">
+                <span class="glyphicon {{parametrage.glyphicon}} btn-lg"></span>
+                <div class="caption">
+                    {{parametrage.titre}}
+                </div>
+            </a>
+        </div>
+
     </div>
 </div>

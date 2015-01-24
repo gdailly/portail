@@ -16,9 +16,12 @@ angular.module('portailApp')
                     }
                 },
                 resolve: {
-                    mainTranslatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate,$translatePartialLoader) {
-                        $translatePartialLoader.addPart('main');
-                        return $translate.refresh();
+                    resolvedParametrage: ['Parametrage', function (Parametrage) {
+                         return null;
+
+                    }],
+                    resolvedParametrageDefaut: ['Parametrage', function (Parametrage) {
+                        return Parametrage.defaut.query();
                     }]
                 }
             });

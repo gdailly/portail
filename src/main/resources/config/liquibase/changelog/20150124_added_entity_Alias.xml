@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <!--
+        Added the entity Alias.
+    -->
+    <changeSet id="15RC04.01" author="guda">
+        <createTable tableName="T_ALIAS">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="alias" type="varchar(255)"/>
+            <column name="url" type="varchar(255)"/>
+            <column name="created_by" type="varchar(50)" defaultValue="system">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp" defaultValueDate="${now}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="15RC04.02" author="guda">
+        <createTable tableName="T_PARAMETRAGE_DEFAUT">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="titre" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="aliasid" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+            <column name="parametre_alias" type="varchar(255)"/>
+            <column name="url" type="varchar(255)"/>
+            <column name="glyphicon" type="varchar(255)"/>
+            <column name="created_by" type="varchar(50)" defaultValue="system">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp" defaultValueDate="${now}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="aliasid"
+                                 baseTableName="T_PARAMETRAGE_DEFAUT"
+                                 referencedTableName="T_ALIAS"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_parametrage_defaut_alias" />
+    </changeSet>
+
+    <changeSet id="15RC04.03" author="guda">
+        <addColumn tableName="T_ALIAS">
+            <column name="owner" type="varchar(50)" defaultValue="system">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="15RC04.04" author="guda">
+        <createTable tableName="T_PARAMETRAGE">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="titre" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="aliasid" type="bigint">
+                <constraints nullable="true"/>
+            </column>
+            <column name="parametre_alias" type="varchar(255)"/>
+            <column name="url" type="varchar(255)"/>
+            <column name="glyphicon" type="varchar(255)"/>
+            <column name="created_by" type="varchar(50)" defaultValue="system">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp" defaultValueDate="${now}">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_modified_by" type="varchar(50)"/>
+            <column name="last_modified_date" type="timestamp"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseColumnNames="aliasid"
+                                 baseTableName="T_PARAMETRAGE"
+                                 referencedTableName="T_ALIAS"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_parametrage_alias" />
+    </changeSet>
+
+</databaseChangeLog>
