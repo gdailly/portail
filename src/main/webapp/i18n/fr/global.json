@@ -10,6 +10,8 @@
             },
             "account": {
                 "main": "Compte",
+                "parametrage": "Paramétrage",
+                "alias": "Alias",
                 "settings": "Profil",
                 "password": "Mot de passe",
                 "sessions": "Sessions",
@@ -64,6 +66,13 @@
                     "invalid": "Votre email n'est pas valide."
                 }
             }
+        },
+        "action": {
+            "save": "Sauvegarder",
+            "delete": "Supprimer",
+            "cancel": "Annuler",
+            "edit": "Editer",
+            "create": "Créer"
         }
     },
     "entity": {

@@ -10,6 +10,8 @@
             },
             "account": {
                 "main": "Account",
+                "parametrage": "Parameter",
+                "alias": "Alias",
                 "settings": "Settings",
                 "password": "Password",
                 "sessions": "Sessions",
@@ -64,6 +66,13 @@
                     "maxlength": "Your e-mail cannot be longer than 50 characters"
                 }
             }
+        },
+        "action": {
+            "save": "Save",
+            "delete": "Delete",
+            "cancel": "Cancel",
+            "edit": "Edit",
+            "create": "Create"
         }
     },
     "entity": {

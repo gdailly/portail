@@ -15,7 +15,7 @@ import java.io.Serializable;
 public class Alias extends AbstractAuditingEntity implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "alias")
@@ -65,11 +65,6 @@ public class Alias extends AbstractAuditingEntity implements Serializable {
         if (id != null ? !id.equals(alias.id) : alias.id != null) return false;
 
         return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return (int) (id ^ (id >>> 32));
     }
 
     @Override

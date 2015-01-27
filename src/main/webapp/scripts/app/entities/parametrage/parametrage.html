@@ -1,0 +1,130 @@
+<div>
+
+    <h2 translate="parameter.title">Parameter</h2>
+
+    <button class="btn btn-primary" data-toggle="modal" data-target="#saveParametrageModal" ng-click="clear()">
+        <span class="glyphicon glyphicon-flash"></span>&nbsp;<span translate="global.action.create">Create</span>
+    </button>
+    <div class="modal fade" id="saveParametrageModal" tabindex="-1" role="dialog" aria-labelledby="myAliasLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="form" role="form" novalidate
+                      class="ng-scope ng-invalid ng-invalid-required ng-dirty ng-valid-minlength"
+                      ng-submit="saveParametrage()">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="clear()">
+                            &times;
+                        </button>
+                        <h4 class="modal-title" id="myParametreLabel" translate="parameter.modal.title">Create or edit a
+                            parameter</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label translate="parameter.object.id">ID</label>
+                            <input type="text" class="form-control" name="id" ng-model="parametrageStruct.id" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label translate="parameter.object.title">Titre</label>
+                            <input type="text" class="form-control" ng-model="parametrageStruct.titre"
+                                   placeholder="{{'parameter.object.title.placeholder' | translate}}">
+                        </div>
+                        <div class="form-group">
+                            <label translate="parameter.object.icon">Icon</label>
+
+                            <div class="row">
+                                <div class="dropdown col-lg-4">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                                            data-toggle="dropdown">
+                                        <span translate="parameter.icon.choice">Selectionner une icone</span>
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu columns" role="menu" aria-labelledby="dropdownMenu1">
+                                        <li ng-repeat="iconeDispo in listeIconeDispo" role="presentation"><a
+                                            role="menuitem" ng-click="setIcone(iconeDispo)"><span
+                                            class="glyphicon {{iconeDispo}}"></span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-lg-1" ng-bind-html="glyphicon"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label translate="parameter.parametrage.type">Type de parametrage</label>
+
+                            <div class="dropdown">
+                                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                                        data-toggle="dropdown">
+                                    <span translate="parameter.parametrage.choice">Choix de parametrage</span>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                    <li role="presentation"><a role="menuitem" ng-click="setAliasEnable(true)">Alias</a>
+                                    </li>
+                                    <li role="presentation"><a role="menuitem" ng-click="setAliasEnable(false)">Url</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="form-group" ng-show="isAliasEnable && isUrlAliasEnable">
+                            <label translate="parameter.object.alias">Alias</label>
+                            <input type="text" class="form-control" ng-model="alias" ng-blur="completeUrl()"
+                                   placeholder="{{'parameter.object.alias.placeholder' | translate}}">
+                        </div>
+                        <div class="form-group" ng-show="isUrlAliasEnable">
+                            <label translate="parameter.object.url">Url</label>
+                            <input type="text" class="form-control" ng-model="parametrageStruct.url"
+                                   ng-disabled="isAliasEnable"
+                                   placeholder="{{'parameter.object.url.placeholder' | translate}}">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
+                            translate="global.action.cancel">Cancel</span>
+                        </button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="!isFormumaireValid()">
+                            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="global.action.save">Save</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="parameter.object.icon">Icone</th>
+                <th translate="parameter.object.title">Titre</th>
+                <th translate="parameter.object.url">Url</th>
+                <th translate="parameter.object.alias">Alias</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="parametrage in listeParametrage">
+                <td><span class="glyphicon {{parametrage.glyphicon}}"></span></td>
+                <td>{{parametrage.titre}}</td>
+                <td>{{parametrage.url}}</td>
+                <td>{{parametrage.aliasStruct.alias}}/{{parametrage.parametrageAlias}}</td>
+                <td>
+                    <button type="submit"
+                            ng-click="update(parametrage.id)"
+                            class="btn btn-default btn-xs">
+                        <span class="glyphicon glyphicon-pencil">&nbsp;</span><span
+                        translate="global.action.edit">Edit</span>
+                    </button>
+                    <button type="submit"
+                            ng-click="delete(parametrage.id)"
+                            class="btn btn-danger btn-xs">
+                        <span class="glyphicon glyphicon-remove-circle">&nbsp;</span><span
+                        translate="global.action.delete">Delete</span>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

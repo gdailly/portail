@@ -1,0 +1,18 @@
+{
+    "alias": {
+        "title": "Alias",
+        "modal.title": "Creer ou editer un Alias",
+        "object": {
+            "id": "ID",
+            "alias": "Alias",
+            "alias.placeholder": "Alias",
+            "url": "Url",
+            "url.placeholder": "Url cible",
+            "owner": "Propriétaire",
+            "owner.placeholder": "Propriétaire"
+        },
+        "error": {
+            "delete": "Cet alias est utilisé par un parametre"
+        }
+    }
+}

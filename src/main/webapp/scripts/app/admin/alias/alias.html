@@ -1,0 +1,97 @@
+<div>
+
+    <h2 translate="alias.title">Alias</h2>
+
+    <div class="alert alert-danger" role="alert" ng-show="error != null"
+    ">{{error}}
+</div>
+
+<button class="btn btn-primary" data-toggle="modal" data-target="#saveAliasModal" ng-click="clear()">
+    <span class="glyphicon glyphicon-flash"></span>&nbsp;<span translate="global.action.create">Create</span>
+</button>
+<div class="modal fade" id="saveAliasModal" tabindex="-1" role="dialog" aria-labelledby="myAliasLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form name="form" role="form" novalidate
+                  class="ng-scope ng-invalid ng-invalid-required ng-dirty ng-valid-minlength"
+                  ng-submit="create()">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" ng-click="clear()">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myAliasLabel" translate="alias.modal.title">Create or edit an Alias</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label translate="alias.object.id">ID</label>
+                        <input type="text" class="form-control" name="id" ng-model="aliasStruct.id" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label translate="alias.object.alias">Alias</label>
+                        <input type="text" class="form-control" ng-model="aliasStruct.alias"
+                               placeholder="{{'alias.object.alias.placeholder' | translate}}" required>
+                    </div>
+                    <div class="form-group">
+                        <label translate="alias.object.url">Url</label>
+                        <input type="text" class="form-control" ng-model="aliasStruct.url"
+                               placeholder="{{'alias.object.url.placeholder' | translate}}" required>
+                    </div>
+                    <div class="form-group">
+                        <label translate="alias.object.owner">Owner</label>
+                        <input type="text" class="form-control" ng-model="aliasStruct.owner"
+                               placeholder="{{'alias.object.owner.placeholder' | translate}}" required>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                        <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span
+                        translate="global.action.cancel">Cancel</span>
+                    </button>
+                    <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;<span
+                        translate="global.action.save">Save</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th translate="alias.object.alias">Alias</th>
+            <th translate="alias.object.url">Url</th>
+            <th translate="alias.object.owner">Owner</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="aliasStruct in listeAliasStruct">
+            <td>{{aliasStruct.alias}}</td>
+            <td>{{aliasStruct.url}}</td>
+            <td>{{aliasStruct.owner}}</td>
+            <td>
+                <button type="submit"
+                        ng-click="update(aliasStruct.id)"
+                        class="btn btn-default btn-xs">
+                    <span class="glyphicon glyphicon-pencil">&nbsp;</span><span
+                    translate="global.action.edit">Edit</span>
+                </button>
+                <button type="submit"
+                        ng-click="delete(aliasStruct.id)"
+                        class="btn btn-danger btn-xs">
+                    <span class="glyphicon glyphicon-remove-circle">&nbsp;</span><span translate="global.action.delete">Delete</span>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>

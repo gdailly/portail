@@ -1,0 +1,21 @@
+{
+    "parameter": {
+        "title": "Paramétrage",
+        "modal.title": "Creer ou éditer un paramétrage",
+        "parametrage.type": "Type de paramétrage",
+        "parametrage.choice": "Choix de paramétrage",
+        "icon.choice": "Sélectionner une icone",
+        "object": {
+            "id": "ID",
+            "title": "Titre",
+            "title.placeholder": "Titre",
+            "icon": "Icone",
+            "alias": "Alias",
+            "alias.placeholder": "Alias",
+            "url": "Url",
+            "url.placeholder": "Url cible",
+            "owner": "Propriétaire",
+            "owner.placeholder": "Propriétaire"
+        }
+    }
+}
